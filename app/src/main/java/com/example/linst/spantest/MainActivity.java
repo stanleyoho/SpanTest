@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import org.apmem.tools.layouts.FlowLayout;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
 	int count = 0;
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		FlowLayout linearLayout = findViewById(R.id.layout);
+		WordWrapView linearLayout = findViewById(R.id.layout);
 //		final TextView textView = findViewById(R.id.text);
 //		Button button = findViewById(R.id.btn);
 
@@ -29,16 +31,29 @@ public class MainActivity extends AppCompatActivity {
 		context.replace("\\n","");
 		context.replace("/n","");
 		final String[] contents = context.split("<_>");
-
+		ArrayList<String> contentList = new ArrayList<>();
+ 		for(String ss : contents){
+ 			if(ss.length() > 5){
+ 				for(int i = 0 ; i <= ss.length()/5 ; i ++){
+ 					if( i != ss.length()/5){
+ 						contentList.add(ss.substring(i*5 , ((i+1)*5) -1));
+				    }else {
+					    contentList.add(ss.substring(i*5 , ss.length()-1));
+				    }
+			    }
+		    }else {
+ 				contentList.add(ss);
+		    }
+	    }
 
 		for(int i = 0 ; i < contents.length ; i++){
 
 			//text words
-			LinearLayout.LayoutParams wordParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,50);
+			LinearLayout.LayoutParams wordParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT);
 			TextView textViewWords = new TextView(this);
 			textViewWords.setLayoutParams(wordParams);
 			textViewWords.setText(contents[i]);
-			textViewWords.setTextSize(24);
+			textViewWords.setTextSize(16);
 			textViewWords.setGravity(Gravity.CENTER_VERTICAL);
 
 			linearLayout.addView(textViewWords);
@@ -46,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
 			//badge
 			BadgeView badgeView = new BadgeView(this);
 			LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(50,50);
-			layoutParams.setMargins(20,0,0,0);
+			layoutParams.setMarginStart(10);
+			layoutParams.gravity = Gravity.CENTER_VERTICAL;
 			badgeView.setLayoutParams(layoutParams);
 			badgeView.setBadgeCount(i+1);
 			linearLayout.addView(badgeView);
@@ -54,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
 			//answer
 			LinearLayout.LayoutParams answerParams = new LinearLayout.LayoutParams(150,50);
 			TextView textViewAnswer = new TextView(this);
-			answerParams.setMargins(20,0,0,0);
+			answerParams.setMarginStart(10);
 			textViewAnswer.setLayoutParams(answerParams);
-			textViewAnswer.setTextSize(24);
+			textViewAnswer.setTextSize(16);
 			textViewAnswer.setGravity(Gravity.CENTER_VERTICAL);
 			textViewAnswer.setBackground(ContextCompat.getDrawable(this,R.drawable.bg_text));
 			linearLayout.addView(textViewAnswer);
