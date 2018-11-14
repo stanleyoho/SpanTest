@@ -11,10 +11,13 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content">
 
-		<com.example.linst.spantest.WordWrapView
+		<com.example.linst.spantest.MyAutoLayout
 			android:id="@+id/layout"
+			android:layout_marginStart="3dp"
+			android:layout_marginEnd="3dp"
 			android:layout_marginTop="10dp"
-			app:spacing_vertical="5dp"
+			app:verticalSpace="10dp"
+			app:horizontalSpace="5dp"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"/>
 	</ScrollView>

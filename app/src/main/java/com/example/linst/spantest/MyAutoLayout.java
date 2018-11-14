@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  * 自动换行view
  * Created by ys on 2016/2/3.
  */
-public class WordWrapView extends ViewGroup {
+public class MyAutoLayout extends ViewGroup {
 
 	private int horizontalSpace;
 
@@ -19,7 +19,7 @@ public class WordWrapView extends ViewGroup {
 
 	private int theRealWidth;
 
-	public WordWrapView(Context context, AttributeSet attrs) {
+	public MyAutoLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		TypedArray array=context.obtainStyledAttributes(attrs, R.styleable.AutoLineLayout);
 		horizontalSpace= (int) Math.ceil(array.getDimension(R.styleable.AutoLineLayout_horizontalSpace,0));

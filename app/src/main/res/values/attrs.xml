@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="WordWrapView">
-        <attr name="spacing_vertical" format="dimension" />
-        <attr name="spacing_horizontal" format="dimension" />
-    </declare-styleable>
-
     <declare-styleable name="AutoLineLayout">
         <attr name="horizontalSpace" format="dimension"/>
         <attr name="verticalSpace" format="dimension"/>
